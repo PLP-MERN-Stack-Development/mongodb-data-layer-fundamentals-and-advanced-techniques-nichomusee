@@ -1,0 +1,341 @@
+Please enter a MongoDB connection string (Default: mongodb://localhost/):
+
+Current Mongosh Log ID: 68decdd2822a4b60cdb5f898
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.5.0
+Using MongoDB:          8.0.8
+Using Mongosh:          2.5.0
+mongosh 2.5.8 is available for download: https://www.mongodb.com/try/download/shell
+
+For mongosh info see: https://www.mongodb.com/docs/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2025-09-10T21:04:50.185+03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> use plp_bookstore
+... db.createCollection("books")
+...
+switched to db plp_bookstore
+plp_bookstore> db.books.insertMany([
+...   {
+...     title: "The AI Revolution",
+...     author: "Jane Doe",
+...     genre: "Technology",
+...     published_year: 2021,
+...     price: 29.99,
+...     in_stock: true,
+...     pages: 320,
+...     publisher: "TechPress"
+...   },
+...   // Add 9 more books with varied genres, authors, and years
+... ])
+...
+{
+  acknowledged: true,
+  insertedIds: { '0': ObjectId('68dece32822a4b60cdb5f899') }
+}
+plp_bookstore> db.books.insertMany([
+...   {
+...     title: "The AI Revolution",
+...     author: "Jane Doe",
+...     genre: "Technology",
+...     published_year: 2021,
+...     price: 29.99,
+...     in_stock: true,
+...     pages: 320,
+...     publisher: "TechPress"
+...   },
+...   // Add 9 more books with varied genres, authors, and years
+... ])
+...     title: "
+Uncaught:
+SyntaxError: Unterminated string constant. (14:11)
+
+  12 |   // Add 9 more books with varied genres, authors, and years
+  13 | ])
+> 14 |     title: "
+     |            ^
+  15 |
+
+plp_bookstore> db.books.insertMany([
+...   {
+...     title: "Beyond the Savannah",
+...     author: "Ngugi wa Thiong'o",
+...     genre: "Historical Fiction",
+...     published_year: 2005,
+...     price: 18.50,
+...     in_stock: true,
+...     pages: 280,
+...     publisher: "East African Press"
+...   },
+...   {
+...     title: "Quantum Minds",
+...     author: "Elena Rodriguez",
+...     genre: "Science",
+...     published_year: 2019,
+...     price: 35.00,
+...     in_stock: false,
+...     pages: 410,
+...     publisher: "Nova Science"
+...   },
+...   {
+...     title: "The Startup Code",
+...     author: "Samir Patel",
+...     genre: "Business",
+...     published_year: 2022,
+...     price: 27.99,
+...     in_stock: true,
+...     pages: 300,
+...     publisher: "Innovate Books"
+...   },
+...   {
+...     title: "Whispers of the Nile",
+...     author: "Amina Hassan",
+...     genre: "Mystery",
+...     published_year: 2011,
+...     price: 22.00,
+...     in_stock: true,
+...     pages: 350,
+...     publisher: "Riverstone Publishing"
+...   },
+...   {
+...     title: "Learning to Learn",
+...     author: "Dr. Peter Kimani",
+...     genre: "Education",
+...     published_year: 2016,
+...     price: 19.95,
+...     in_stock: false,
+...     pages: 240,
+...     publisher: "Scholarly Works"
+...   },
+...   {
+...     title: "The Green Algorithm",
+...     author: "Lina Okoth",
+...     genre: "Technology",
+...     published_year: 2023,
+...     price: 31.25,
+...     in_stock: true,
+...     pages: 290,
+...     publisher: "EcoTech Media"
+...   },
+...   {
+...     title: "Voices from the Rift",
+...     author: "David Muriuki",
+...     genre: "Anthology",
+...     published_year: 2008,
+...     price: 16.75,
+...     in_stock: true,
+...     pages: 200,
+...     publisher: "PanAfrica Books"
+...   },
+...   {
+...     title: "Code of Shadows",
+...     author: "Talia Winters",
+...     genre: "Thriller",
+...     published_year: 2014,
+...     price: 25.00,
+...     in_stock: false,
+...     pages: 360,
+...     publisher: "Darkline Publishing"
+...   },
+...   {
+...     title: "The Future of Us",
+...     author: "Kwame Mensah",
+...     genre: "Science Fiction",
+...     published_year: 2020,
+...     price: 28.00,
+...     in_stock: true,
+...     pages: 400,
+...     publisher: "Orbit Africa"
+...   }
+... ])
+...
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('68decf61822a4b60cdb5f89a'),
+    '1': ObjectId('68decf61822a4b60cdb5f89b'),
+    '2': ObjectId('68decf61822a4b60cdb5f89c'),
+    '3': ObjectId('68decf61822a4b60cdb5f89d'),
+    '4': ObjectId('68decf61822a4b60cdb5f89e'),
+    '5': ObjectId('68decf61822a4b60cdb5f89f'),
+    '6': ObjectId('68decf61822a4b60cdb5f8a0'),
+    '7': ObjectId('68decf61822a4b60cdb5f8a1'),
+    '8': ObjectId('68decf61822a4b60cdb5f8a2')
+  }
+}
+plp_bookstore> // Example: Find all Science Fiction books
+... db.books.find({ genre: "Science Fiction" })
+...
+[
+  {
+    _id: ObjectId('68decf61822a4b60cdb5f8a2'),
+    title: 'The Future of Us',
+    author: 'Kwame Mensah',
+    genre: 'Science Fiction',
+    published_year: 2020,
+    price: 28,
+    in_stock: true,
+    pages: 400,
+    publisher: 'Orbit Africa'
+  }
+]
+plp_bookstore> // Example: Find books published after 2015
+... db.books.find({ published_year: { $gt: 2015 } })
+...
+[
+  {
+    _id: ObjectId('68dece32822a4b60cdb5f899'),
+    title: 'The AI Revolution',
+    author: 'Jane Doe',
+    genre: 'Technology',
+    published_year: 2021,
+    price: 29.99,
+    in_stock: true,
+    pages: 320,
+    publisher: 'TechPress'
+  },
+  {
+    _id: ObjectId('68decf61822a4b60cdb5f89b'),
+    title: 'Quantum Minds',
+    author: 'Elena Rodriguez',
+    genre: 'Science',
+    published_year: 2019,
+    price: 35,
+    in_stock: false,
+    pages: 410,
+    publisher: 'Nova Science'
+  },
+  {
+    _id: ObjectId('68decf61822a4b60cdb5f89c'),
+    title: 'The Startup Code',
+    author: 'Samir Patel',
+    genre: 'Business',
+    published_year: 2022,
+    price: 27.99,
+    in_stock: true,
+    pages: 300,
+    publisher: 'Innovate Books'
+  },
+  {
+    _id: ObjectId('68decf61822a4b60cdb5f89e'),
+    title: 'Learning to Learn',
+    author: 'Dr. Peter Kimani',
+    genre: 'Education',
+    published_year: 2016,
+    price: 19.95,
+    in_stock: false,
+    pages: 240,
+    publisher: 'Scholarly Works'
+  },
+  {
+    _id: ObjectId('68decf61822a4b60cdb5f89f'),
+    title: 'The Green Algorithm',
+    author: 'Lina Okoth',
+    genre: 'Technology',
+    published_year: 2023,
+    price: 31.25,
+    in_stock: true,
+    pages: 290,
+    publisher: 'EcoTech Media'
+  },
+  {
+    _id: ObjectId('68decf61822a4b60cdb5f8a2'),
+    title: 'The Future of Us',
+    author: 'Kwame Mensah',
+    genre: 'Science Fiction',
+    published_year: 2020,
+    price: 28,
+    in_stock: true,
+    pages: 400,
+    publisher: 'Orbit Africa'
+  }
+]
+plp_bookstore> // Example: Find books by Ngugi wa Thiong'o
+... db.books.find({ author: "Ngugi wa Thiong'o" })
+...
+[
+  {
+    _id: ObjectId('68decf61822a4b60cdb5f89a'),
+    title: 'Beyond the Savannah',
+    author: "Ngugi wa Thiong'o",
+    genre: 'Historical Fiction',
+    published_year: 2005,
+    price: 18.5,
+    in_stock: true,
+    pages: 280,
+    publisher: 'East African Press'
+  }
+]
+plp_bookstore> // Example: Update price of "The AI Revolution"
+... db.books.updateOne(
+...   { title: "The AI Revolution" },
+...   { $set: { price: 24.99 } }
+... )
+...
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+plp_bookstore> // Example: Delete "Voices from the Rift"
+... db.books.deleteOne({ title: "Voices from the Rift" })
+...
+{ acknowledged: true, deletedCount: 1 }
+plp_bookstore> db.books.aggregate([
+...   {
+...     $group: {
+...       _id: "$genre",
+...       average_price: { $avg: "$price" }
+...     }
+...   }
+... ])
+...
+[
+  { _id: 'Business', average_price: 27.99 },
+  { _id: 'Education', average_price: 19.95 },
+  { _id: 'Science', average_price: 35 },
+  { _id: 'Thriller', average_price: 25 },
+  { _id: 'Technology', average_price: 28.119999999999997 },
+  { _id: 'Mystery', average_price: 22 },
+  { _id: 'Science Fiction', average_price: 28 },
+  { _id: 'Historical Fiction', average_price: 18.5 }
+]
+plp_bookstore> db.books.aggregate([
+...   {
+...     $group: {
+...       _id: "$author",
+...       book_count: { $sum: 1 }
+...     }
+...   },
+...   { $sort: { book_count: -1 } },
+...   { $limit: 1 }
+... ])
+...
+[ { _id: 'Dr. Peter Kimani', book_count: 1 } ]
+plp_bookstore> db.books.aggregate([
+...   {
+...     $group: {
+...       _id: {
+...         $concat: [
+...           { $toString: { $multiply: [ { $floor: { $divide: ["$published_year", 10] } }, 10 ] } },
+...           "s"
+...         ]
+...       },
+...       count: { $sum: 1 }
+...     }
+...   },
+...   { $sort: { _id: 1 } }
+... ])
+...
+[
+  { _id: '2000s', count: 1 },
+  { _id: '2010s', count: 4 },
+  { _id: '2020s', count: 4 }
+]
+plp_bookstore> db.books.createIndex({ title: 1 })
+title_1
+plp_bookstore>
